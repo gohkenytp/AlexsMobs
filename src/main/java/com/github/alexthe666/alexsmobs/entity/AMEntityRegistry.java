@@ -90,6 +90,7 @@ public class AMEntityRegistry {
     public static final EntityType<EntityFrilledShark> FRILLED_SHARK = registerEntity(EntityType.Builder.create(EntityFrilledShark::new, EntityClassification.WATER_CREATURE).size(1.3F, 0.4F), "frilled_shark");
     public static final EntityType<EntityMimicOctopus> MIMIC_OCTOPUS = registerEntity(EntityType.Builder.create(EntityMimicOctopus::new, EntityClassification.WATER_CREATURE).size(0.9F, 0.6F), "mimic_octopus");
     public static final EntityType<EntitySeagull> SEAGULL = registerEntity(EntityType.Builder.create(EntitySeagull::new, EntityClassification.CREATURE).size(0.45F, 0.45F), "seagull");
+    public static final EntityType<EntitySeagull> PORCUPINE = registerEntity(EntityType.Builder.create(EntityPorcupine::new, EntityClassification.CREATURE).size(0.7F, 0.8F), "porcupine");
 
     private static final EntityType registerEntity(EntityType.Builder builder, String entityName) {
         ResourceLocation nameLoc = new ResourceLocation(AlexsMobs.MODID, entityName);
@@ -147,7 +148,8 @@ public class AMEntityRegistry {
         EntitySpawnPlacementRegistry.register(FRILLED_SHARK, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityFrilledShark::canFrilledSharkSpawn);
         EntitySpawnPlacementRegistry.register(MIMIC_OCTOPUS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityMimicOctopus::canMimicOctopusSpawn);
         EntitySpawnPlacementRegistry.register(SEAGULL, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntitySeagull::canSeagullSpawn);
-
+        EntitySpawnPlacementRegistry.register(PORCUPINE, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTiger::canPorcupineSpawn);
+        
     }
 
     @SubscribeEvent
@@ -227,6 +229,7 @@ public class AMEntityRegistry {
         event.put(FRILLED_SHARK, EntityFrilledShark.bakeAttributes().create());
         event.put(MIMIC_OCTOPUS, EntityMimicOctopus.bakeAttributes().create());
         event.put(SEAGULL, EntitySeagull.bakeAttributes().create());
+        event.put(PORCUPINE, EntityPorcupine.bakeAttributes().create());
     }
 
     public static Predicate<LivingEntity> buildPredicateFromTag(ITag entityTag){
